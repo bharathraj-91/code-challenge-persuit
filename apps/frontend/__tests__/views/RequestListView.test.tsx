@@ -106,6 +106,6 @@ describe('RequestListView Component', () => {
 
         render(<RequestListView name={name} />);
 
-        await waitFor(() => expect(screen.getByText('Error: No requests found for this user')).toBeInTheDocument());
+        await waitFor(() => expect(screen.getByText('No requests')).toBeInTheDocument());
     });
 });

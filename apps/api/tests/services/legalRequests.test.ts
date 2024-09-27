@@ -32,6 +32,12 @@ describe('Legal Requests Service', () => {
         },
     ];
 
+    const sortedMockData = [
+        mockData[2],
+        mockData[1],
+        mockData[0],
+    ]
+
     beforeEach(() => {
         jest.clearAllMocks();
     });
@@ -57,10 +63,10 @@ describe('Legal Requests Service', () => {
             expect(data).toEqual([]);
         });
 
-        it('should load and parse data correctly when the file contains valid JSON', () => {
+        it('should load and parse sorted data correctly when the file contains valid JSON', () => {
             (fs.readFileSync as jest.Mock).mockReturnValue(JSON.stringify(mockData));
             const data = loadData();
-            expect(data).toEqual(mockData);
+            expect(data).toEqual(sortedMockData);
         });
 
         it('should log an error if reading the file fails', () => {

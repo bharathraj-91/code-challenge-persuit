@@ -21,7 +21,10 @@ export const loadData = (): legalRequestsData[] => {
             throw new Error('Invalid data format: expected an array.');
         }
 
-        return data as legalRequestsData[];
+        return data
+            .sort((a, b) => {
+                return b.createdAt - a.createdAt;
+            }) as legalRequestsData[];
     } catch (error) {
 
         if (error instanceof Error) {

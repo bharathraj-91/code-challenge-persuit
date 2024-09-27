@@ -24,7 +24,7 @@ const RequestListView = ({ name }: RequestListViewProps) => {
                     setTotalPages(data.totalPages);
                     setError(null);
                 } else if(res.status === 404) {
-                    setError('No requests found for this user');
+                    setError('No requests');
                 } else {
                     setError('Failed to load requests');
                 }
@@ -47,7 +47,7 @@ const RequestListView = ({ name }: RequestListViewProps) => {
     };
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (error) return <p>{error.includes('No requests') ? error : `Error: ${error}`}</p>;
     if (requests.length === 0) return <p>No requests</p>;
 
     return (
