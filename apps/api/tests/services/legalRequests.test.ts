@@ -1,5 +1,3 @@
-// src/__tests__/legalRequests.test.ts
-
 import { getRequestsByAuthor, loadData } from "../../services/legalRequests";
 import fs from 'fs';
 import path from 'path';
