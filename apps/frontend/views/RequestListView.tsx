@@ -47,7 +47,7 @@ const RequestListView = ({ name }: RequestListViewProps) => {
     };
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>{error}</p>;
+    if (error) return <p>Error: {error}</p>;
     if (requests.length === 0) return <p>No requests</p>;
 
     return (

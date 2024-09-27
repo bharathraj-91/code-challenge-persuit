@@ -69,13 +69,14 @@ describe('RequestListView Component', () => {
         global.fetch = jest.fn(() =>
             Promise.resolve({
                 ok: false,
+                status: 500,
                 json: () => Promise.resolve({}),
             })
         ) as jest.Mock;
 
         render(<RequestListView name={name} />);
 
-        await waitFor(() => expect(screen.getByText('An error occurred while fetching the data')).toBeInTheDocument());
+        await waitFor(() => expect(screen.getByText('Error: Failed to load requests')).toBeInTheDocument());
     });
 
     test('renders no requests when there are none', async () => {
@@ -105,6 +106,6 @@ describe('RequestListView Component', () => {
 
         render(<RequestListView name={name} />);
 
-        await waitFor(() => expect(screen.getByText('No requests found for this user')).toBeInTheDocument());
+        await waitFor(() => expect(screen.getByText('Error: No requests found for this user')).toBeInTheDocument());
     });
 });
