@@ -4,7 +4,7 @@ import router from "./routes/index";
 import handleUnknownRoutes from "./middleware/unknownRoutes";
 
 
-const app = express();
+export const app = express();
 const port = 3001;
 
 // Middlewares
