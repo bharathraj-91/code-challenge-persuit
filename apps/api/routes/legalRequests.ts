@@ -7,6 +7,8 @@ const router = Router();
 
 router.get("/list/:name", validateName, (req: Request<listParams>, res: Response) => {
     const { name } = req.params;
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
 
     const results = getRequestsByAuthor(name);
 
@@ -15,7 +17,16 @@ router.get("/list/:name", validateName, (req: Request<listParams>, res: Response
         return res.status(404).json({ message: "No requests found for the specified author." });
     }
 
-    return res.status(200).json(results);
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const paginatedResults = results.slice(startIndex, endIndex);
+
+    return res.status(200).json({
+        totalResults: results.length,
+        totalPages: Math.ceil(results.length / limit),
+        currentPage: page,
+        data: paginatedResults
+    });
 });
 
 export default router;
