@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import {legalRequestsData} from "../types/legalRequests";
 
-const loadData = (): legalRequestsData[] => {
+export const loadData = (): legalRequestsData[] => {
     const filePath = path.join(__dirname, "../requests-data.json");
 
     try {
